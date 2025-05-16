@@ -33,7 +33,8 @@ jobs:
         code = """\
         import sys
         with open("hoge.txt", "w", encoding="utf-8") as f:
-            print(sys.stdout.encoding, type(sys.stdout.buffer.raw), file=f)
+            print(sys.stdout.encoding, type(sys.stdout.buffer.raw).__name__, file=f)
+            print(f.encoding, type(f.buffer.raw).__name__, file=f)
         """
         p = subprocess.run(
             [sys.executable, '-c', code],
