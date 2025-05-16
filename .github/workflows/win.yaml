@@ -30,11 +30,16 @@ jobs:
     - run: |
         import sys
         import subprocess
+        code = """\
+        import sys
+        with open("hoge.txt", "w", encoding="utf-8") as f:
+            print(sys.stdout.encoding, type(sys.stdout.buffer.raw), file=f)
+        """
         p = subprocess.run(
-            [sys.executable, '-c', 'import sys; print(sys.stdout.encoding, type(sys.stdout.buffer.raw), file=sys.stderr)'],
+            [sys.executable, '-c', code],
             creationflags=subprocess.CREATE_NEW_CONSOLE,
             check=True,
-            stderr=subprocess.PIPE,
         )
-        print(p.stderr)
+        with open("hoge.txt", "r", encoding="utf-8") as f:
+            print(f.read())
       shell: python
