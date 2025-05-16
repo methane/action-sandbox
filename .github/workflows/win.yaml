@@ -22,3 +22,11 @@ jobs:
         python -c "import sys; print(sys.stdout.encoding, type(sys.stdout.buffer.raw))"
       shell: cmd
 
+    - run: |
+        import sys
+        import subprocess
+        subprocess.run(
+            [sys.executable, '-c', 'import sys; print(sys.stdout.encoding, type(sys.stdout.buffer.raw))'],
+            creationflags=subprocess.CREATE_NEW_CONSOLE,
+        )
+      shell: python
