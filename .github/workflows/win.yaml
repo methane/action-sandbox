@@ -1,0 +1,24 @@
+name: Windows test
+
+on:
+  push:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - run: |
+        python -c "import sys; print(sys.stdout.encoding, type(sys.stdout.buffer.raw))"
+      shell: pwsh
+
+    - run: |
+        python -c "import sys; print(sys.stdout.encoding, type(sys.stdout.buffer.raw))"
+      shell: bash
+
+    - run: |
+        python -c "import sys; print(sys.stdout.encoding, type(sys.stdout.buffer.raw))"
+      shell: cmd
+
