@@ -25,8 +25,11 @@ jobs:
     - run: |
         import sys
         import subprocess
-        subprocess.run(
-            [sys.executable, '-c', 'import sys; print(sys.stdout.encoding, type(sys.stdout.buffer.raw))'],
+        p = subprocess.run(
+            [sys.executable, '-c', 'import sys; print(sys.stdout.encoding, type(sys.stdout.buffer.raw), file=sys.stderr)'],
             creationflags=subprocess.CREATE_NEW_CONSOLE,
+            check=True,
+            stderr=subprocess.PIPE,
         )
+        print(p.stderr)
       shell: python
