@@ -19,6 +19,7 @@ jobs:
       shell: bash
 
     - run: |
+        chcp 932
         python -c "import sys; print(sys.stdout.encoding, type(sys.stdout.buffer.raw))"
       shell: cmd
 
